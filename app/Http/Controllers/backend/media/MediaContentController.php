@@ -35,6 +35,7 @@ class MediaContentController extends Controller
 
         $data_media_content = MediaContent::firstOrCreate([
             'title' => $request['title'],
+            'url' => $request['url'],
             'media_categories_id' => $request['categorie'],
             'status' => $request['status'],
         ]);
@@ -60,6 +61,7 @@ class MediaContentController extends Controller
 
         $data_media_content = tap(MediaContent::find($id))->update([
             'title' => $request['title'],
+            'url' => $request['url'],
             'media_categories_id' => $request['categorie'],
             'status' => $request['status'],
         ]);

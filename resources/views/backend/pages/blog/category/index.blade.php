@@ -40,6 +40,7 @@
                                     <th>statut</th>
                                     <th>Nom de la categorie</th>
                                     <th>Date creation</th>
+                                    <th>Position</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -48,8 +49,11 @@
                                     <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
                                         <td>{{ $item['status'] }}</td>
-                                        <td>{{ $item['name'] }}</td>
+                                        <td>
+                                            {{ $item['name'] }}</td>
                                         <td> {{ $item['created_at'] }} </td>
+                                        <td> {{ $item['position'] }} </td>
+
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -57,9 +61,11 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="#!" class="dropdown-item"><i
-                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                            View</a>
+
+                                                    <li><a type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#myModalPosition{{ $item['id'] }}"><i
+                                                                class="ri-list-ordered  align-bottom me-2 text-muted"></i>
+                                                            Position</a>
                                                     </li>
                                                     <li><a type="button" class="dropdown-item edit-item-btn"
                                                             data-bs-toggle="modal"
@@ -78,6 +84,7 @@
                                         </td>
                                     </tr>
                                     @include('backend.pages.blog.category.edit')
+                                    @include('backend.pages.blog.category.position')
                                 @endforeach
 
 
@@ -147,7 +154,8 @@
                                         buttonsStyling: false
                                     })
 
-                                    $('#row_' + Id).remove();
+                                    // $('#row_' + Id).remove();
+                                    location.reload()
                                 }
                             }
                         });
@@ -155,5 +163,31 @@
                 });
             });
         });
+
+
+        ///
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const editableCells = document.querySelectorAll('.editable');
+
+        //     editableCells.forEach(function(cell) {
+        //         cell.addEventListener('keydown', function(event) {
+        //             if (event.key === 'Enter') {
+        //                 event.preventDefault();
+        //                 // submitEditableContent(cell);
+        //                 const id = cell.dataset.id;
+        //                 const content = cell.textContent.trim();
+
+        //                 alert(content)
+        //             }
+        //         });
+        //     });
+
+        //     // function submitEditableContent(cell) {
+        //     //     const id = cell.dataset.id;
+        //     //     const content = cell.textContent.trim();
+        //     //     // You can perform an action here, such as submitting the content to the server
+        //     //     console.log('Submitted content for cell with ID ' + id + ': ' + content);
+        //     // }
+        // });
     </script>
 @endsection

@@ -20,6 +20,7 @@ class Service extends Model implements HasMedia
     protected $fillable = [
         'title',
         'slug',
+        'resume',
         'status',
         'description',
     ];

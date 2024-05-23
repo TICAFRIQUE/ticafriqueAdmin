@@ -10,18 +10,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 class MenuController extends Controller
 {
     //
-    public function index()
-    {
-        return view('backend.pages.menu.create');
-    }
+    // public function index()
+    // {
+    //     return view('backend.pages.menu.create');
+    // }
 
     public function create()
     {
-      
+
 
         //create menu principal
-        $data_menu = Menu::whereNull('parent_id')->with('children')->withCount('children')->get();
-        $data_menu = $data_menu->sortBy('position');
+        $data_menu = Menu::whereNull('parent_id')->with('children', fn ($q) => $q->OrderBy('position', 'ASC'))->withCount('children')->OrderBy('position', 'ASC')->get();
+
         // dd($data_menu->toArray());
         return view('backend.pages.menu.create', compact('data_menu'));
     }
@@ -32,16 +32,16 @@ class MenuController extends Controller
     {
 
         //request validation ......
-        $data_menu_count = Menu::max('position');
 
-        $position =  $data_menu_count + 1;
 
+        $data_count = Menu::where('parent_id', null)->count();
+        // dd($data_count);
 
         $data_menu = Menu::firstOrCreate([
             'name' => $request['name'],
             'status' => $request['status'],
             'url' => $request['url'],
-            'position' => $position,
+            'position' => $data_count + 1,
         ]);
 
         Alert::success('Operation réussi', 'Success Message');
@@ -49,15 +49,14 @@ class MenuController extends Controller
         return back();
     }
 
-
+    /**page view for add item */
     public function addMenuItem(Request $request, $id)
     {
-
-
-        $data_menu = Menu::whereNull('parent_id')->with('children')->get();
-        $data_menu = $data_menu->sortBy('position');
+        //List menu
+        $data_menu = Menu::whereNull('parent_id')->with('children', fn ($q) => $q->OrderBy('position', 'ASC'))->withCount('children')->OrderBy('position', 'ASC')->get();
 
         $data_menu_parent = Menu::find($id);
+
 
         return view('backend.pages.menu.menu-item',  compact('data_menu', 'data_menu_parent'));
     }
@@ -66,18 +65,22 @@ class MenuController extends Controller
     public function addMenuItemStore(Request $request)
     {
         //request validation ......
-        $data_menu_count = Menu::max('position');
 
-        $position =  $data_menu_count + 1;
+        // $data_menu_count = Menu::max('position');
+
+        // $position =  $data_menu_count + 1;
 
         $menu_parent = Menu::whereName($request['menu_parent'])->first();
+
+        //function for add position
+        $data_count = Menu::where('parent_id', $menu_parent['id'])->count();
 
         $data_menu = Menu::firstOrCreate([
             'parent_id' => $menu_parent['id'],
             'name' => $request['name'],
             'status' => $request['status'],
             'url' => $request['url'],
-            'position' => $position,
+            'position' => $data_count + 1,
         ]);
 
         Alert::success('Operation réussi', 'Success Message');
@@ -88,12 +91,16 @@ class MenuController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $data_menu = Menu::whereNull('parent_id')->with('children')->get();
-        $data_menu = $data_menu->sortBy('position');
+        //List menu
+        $data_menu = Menu::whereNull('parent_id')->with('children', fn ($q) => $q->OrderBy('position', 'ASC'))->withCount('children')->OrderBy('position', 'ASC')->get();
+
 
         $data_menu_edit = Menu::find($id);
 
-        return view('backend.pages.menu.menu-edit',  compact('data_menu', 'data_menu_edit'));
+        $data_count = Menu::where('parent_id', $data_menu_edit['parent_id'])->count();
+        // dd($data_count);
+
+        return view('backend.pages.menu.menu-edit',  compact('data_menu', 'data_menu_edit', 'data_count'));
     }
 
 
@@ -106,8 +113,7 @@ class MenuController extends Controller
             'name' => $request['name'],
             'status' => $request['status'],
             'url' => $request['url'],
-
-            // 'position' => $position,
+            'position' => $request['position'],
         ]);
 
         Alert::success('Opération réussi', 'Success Message');
@@ -117,7 +123,15 @@ class MenuController extends Controller
 
     public function delete($id)
     {
-        // Menu::where('parent_id', $id)->delete();
+        //
+        $data_menu_edit = Menu::find($id);
+        $data_menu = Menu::where('parent_id', $data_menu_edit['parent_id'])->get();
+        foreach ($data_menu as $key => $value) {
+            Menu::whereId($value['id'])->update([
+                'position' => $key + 1
+            ]);
+        }
+        //
         Menu::find($id)->delete();
 
         Alert::success('Opération réussi', 'Success Message');

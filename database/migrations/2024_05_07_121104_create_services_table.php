@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable(); // title of service
             $table->string('slug')->nullable(); // slug of service
             $table->string('status')->nullable();
+            $table->longText('resume')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
         });

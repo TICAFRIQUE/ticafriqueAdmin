@@ -47,6 +47,15 @@
                                     </div>
                                 </div>
 
+                                 <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Url de redirection</label>
+                                    <input type="text" name="url" class="form-control" id="validationCustom01"
+                                        >
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Statut</label>
                                     <select name="status" class="form-control">

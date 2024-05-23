@@ -32,6 +32,7 @@ class ServiceController extends Controller
         $data_service = Service::create([
             'title' => $request['title'],
             'status' => $request['status'],
+            'resume' => $request['resume'],
             'description' => $request['description'],
         ]);
 
@@ -62,6 +63,7 @@ class ServiceController extends Controller
         $data_service = tap(Service::find($id))->update([
             'title' => $request['title'],
             'status' => $request['status'],
+            'resume' => $request['resume'],
             'description' => $request['description'],
         ]);
 

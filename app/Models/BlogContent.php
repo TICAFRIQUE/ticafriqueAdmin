@@ -20,6 +20,7 @@ class BlogContent extends Model implements HasMedia
     protected $fillable = [
         'title',
         'slug',
+        'resume', //summary of description
         'description',
         'status',
         'blog_categories_id',

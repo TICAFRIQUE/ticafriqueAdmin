@@ -14,7 +14,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="{{ route('service.store') }}" novalidate enctype="multipart/form-data">
+                    <form class="row g-3 needs-validation" method="post" action="{{ route('service.store') }}" novalidate
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-5">
                             <label for="validationCustom01" class="form-label">Titre du service </label>
@@ -27,8 +28,7 @@
 
                         <div class="col-md-5">
                             <label for="validationCustom01" class="form-label">Image du service </label>
-                            <input type="file" name="image" class="form-control" id="validationCustom01"
-                                required>
+                            <input type="file" name="image" class="form-control" id="validationCustom01" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -40,6 +40,14 @@
                                 <option value="desactive">Desactivé</option>
 
                             </select>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Résumé du service</label>
+                            <textarea class="form-control" name="resume" rows="5" class=""> </textarea><!-- End TinyMCE Editor -->
                             <div class="valid-feedback">
                                 Looks good!
                             </div>

@@ -13,8 +13,9 @@
                         </div>
                         <div class="modal-body">
 
-                            <form class="row g-3 needs-validation" method="post" action="{{ route('temoignage.update' , $item['id']) }}"
-                                novalidate enctype="multipart/form-data">
+                            <form class="row g-3 needs-validation" method="post"
+                                action="{{ route('temoignage.update', $item['id']) }}" novalidate
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Nom</label>
@@ -31,6 +32,14 @@
                                     <textarea class="form-control" name="description" id="" cols="30" rows="10">
                                         {{ $item['description'] }}
                                     </textarea>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Image du slide</label>
+                                    <input type="file" name="image" class="form-control" id="validationCustom01">
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>

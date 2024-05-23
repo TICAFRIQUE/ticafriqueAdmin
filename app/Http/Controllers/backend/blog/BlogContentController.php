@@ -39,6 +39,7 @@ class BlogContentController extends Controller
         // dd($request->all());
         $data_blog_content = BlogContent::create([
             'title' => $request['title'],
+            'resume' => $request['resume'],
             'description' => $request['description'],
             'status' => $request['status'],
             'blog_categories_id' => $request['category'],
@@ -77,15 +78,26 @@ class BlogContentController extends Controller
 
         $data_blog_content = tap(BlogContent::find($id))->update([
             'title' => $request['title'],
+            'resume' => $request['resume'],
             'description' => $request['description'],
             'status' => $request['status'],
             'blog_categories_id' => $request['category'],
         ]);
 
+        //image à la une
         if (request()->hasFile('image')) {
             $data_blog_content->clearMediaCollection('blogImage');
             $data_blog_content->addMediaFromRequest('image')->toMediaCollection('blogImage');
         }
+
+
+        //other images
+        // if ($request->has('images')) {
+        //     foreach ($request->file('images') as $value) {
+        //         $data_blog_content->addMedia($value)
+        //             ->toMediaCollection('images');
+        //     }
+        // }
 
         Alert::success('Opération réussi', 'Success Message');
         return back();

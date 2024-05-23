@@ -21,6 +21,7 @@ class MediaContent extends Model implements HasMedia
         'title',
         'slug',
         'status',
+        'url',
         'media_categories_id',
     ];
 

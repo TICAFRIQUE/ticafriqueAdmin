@@ -35,6 +35,14 @@
                                 </div>
 
                                 <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Image</label>
+                                    <input type="file" name="image" class="form-control" id="validationCustom01">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
                                     <label for="validationCustom01" class="form-label">Statut</label>
                                     <select name="status" class="form-control">
                                         <option value="active">Activé</option>

@@ -40,6 +40,7 @@
                                     <th>statut</th>
                                     <th>Nom de la categorie</th>
                                     <th>Date creation</th>
+                                    <th>Position</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,8 @@
                                         <td>{{ $item['status'] }}</td>
                                         <td>{{ $item['name'] }}</td>
                                         <td> {{ $item['created_at'] }} </td>
+                                        <td> {{ $item['position'] }} </td>
+
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -57,9 +60,10 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="#!" class="dropdown-item"><i
-                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                            View</a>
+                                                    <li><a type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#myModalPosition{{ $item['id'] }}"><i
+                                                                class="ri-list-ordered  align-bottom me-2 text-muted"></i>
+                                                            Position</a>
                                                     </li>
                                                     <li><a type="button" class="dropdown-item edit-item-btn"
                                                             data-bs-toggle="modal"
@@ -78,17 +82,18 @@
                                         </td>
                                     </tr>
                                     @include('backend.pages.media.category.edit')
+                                    @include('backend.pages.media.category.position')
                                 @endforeach
 
 
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!--end row-->
-        @include('backend.pages.media.category.create')
+    </div>
+    <!--end row-->
+    @include('backend.pages.media.category.create')
 @endsection
 @section('script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -147,7 +152,8 @@
                                         buttonsStyling: false
                                     })
 
-                                    $('#row_' + Id).remove();
+                                    // $('#row_' + Id).remove();
+                                    location.reload();
                                 }
                             }
                         });

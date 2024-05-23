@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->longText('title')->nullable();
             $table->string('status')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->string('btn_name')->nullable();
+            $table->string('btn_url')->nullable();
+            $table->string('btn_status')->nullable();
             $table->timestamps();
         });
     }

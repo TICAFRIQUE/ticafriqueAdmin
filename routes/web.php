@@ -76,8 +76,6 @@ Route::middleware(['admin'])->group(function () {
         route::get('delete/{id}', 'delete')->name('admin-register.delete');
         route::get('profil/{id}', 'profil')->name('admin-register.profil');
         route::post('change-password', 'changePassword')->name('admin-register.new-password');
-
-
     });
 
     //role
@@ -113,6 +111,7 @@ Route::middleware(['admin'])->group(function () {
         route::post('store', 'store')->name('blog-category.store');
         route::post('update/{id}', 'update')->name('blog-category.update');
         route::get('delete/{id}', 'delete')->name('blog-category.delete');
+        route::post('position/{id}', 'position')->name('blog-category.position');
     });
 
 
@@ -129,7 +128,7 @@ Route::middleware(['admin'])->group(function () {
 
     #############  MENU  #####################
     Route::prefix('menu')->controller(MenuController::class)->group(function () {
-        route::get('', 'index')->name('menu.index');
+        // route::get('', 'index')->name('menu.index');
         route::get('create', 'create')->name('menu.create');
         route::post('store', 'store')->name('menu.store');
         route::get('add-item/{id}', 'addMenuItem')->name('menu.add-item'); // add subMenu
@@ -206,6 +205,7 @@ Route::middleware(['admin'])->group(function () {
         route::post('store', 'store')->name('media-category.store');
         route::post('update/{id}', 'update')->name('media-category.update');
         route::get('delete/{id}', 'delete')->name('media-category.delete');
+        route::post('position/{id}', 'position')->name('media-category.position');
     });
 
 

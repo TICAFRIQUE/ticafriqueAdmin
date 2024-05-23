@@ -16,6 +16,8 @@ return new class extends Migration
             $table->longText('title')->nullable();
             $table->longText('slug')->nullable();
             $table->string('status')->nullable();
+            $table->string('url')->nullable();
+
 
             $table->foreignId('media_categories_id')
                 ->nullable()

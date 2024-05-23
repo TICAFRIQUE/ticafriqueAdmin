@@ -14,17 +14,18 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="{{ route('blog-content.store') }}" novalidate enctype="multipart/form-data">
+                    <form class="row g-3 needs-validation" method="post" action="{{ route('blog-content.store') }}" novalidate
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Titre du blog</label>
-                            <input type="text" name="title" class="form-control" id="validationCustom01"
-                                placeholder="" required>
+                            <input type="text" name="title" class="form-control" id="validationCustom01" placeholder=""
+                                required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                       
+
                         <div class="col-md-6">
                             <label for="validationCustom01" class="form-label">Image à la une</label>
                             <input type="file" name="image" class="form-control" id="validationCustom01" required>
@@ -33,20 +34,29 @@
                             </div>
                         </div>
 
+
+                        {{-- <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label">Autres images (plusieurs images)</label>
+                            <input type="file" name="images[]" class="form-control" id="validationCustom01" multiple>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div> --}}
+
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label">Categories</label>
                             <select name="category" class="form-control" required>
                                 <option disabled selected value>Sélectionner...</option>
-                              @foreach ($data_blog_category as $item)
-                              <option value="{{$item['id']}}">{{$item['name']}}</option>
-                              @endforeach
+                                @foreach ($data_blog_category as $item)
+                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                @endforeach
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
 
-                         <div class="col-md-2">
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Statut (Mise en ligne)</label>
                             <select name="status" class="form-control">
                                 <option value="active">Activé</option>
@@ -59,7 +69,15 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">Contenu de la page</label>
+                            <label for="validationCustom01" class="form-label">Résumé du blog</label>
+                            <textarea class="form-control" name="resume" rows="5" class=""> </textarea><!-- End TinyMCE Editor -->
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="validationCustom01" class="form-label">Contenu du blog</label>
                             <textarea name="description" class="tinymce-editor"> </textarea><!-- End TinyMCE Editor -->
                             <div class="valid-feedback">
                                 Looks good!

@@ -30,6 +30,11 @@ class TemoignageController extends Controller
         ]);
 
 
+        if (request()->hasFile('image')) {
+            $data_temoignage->addMediaFromRequest('image')->toMediaCollection('temoignageImage');
+        }
+
+
         Alert::success('Operation réussi', 'Success Message');
 
         return back();
@@ -47,6 +52,12 @@ class TemoignageController extends Controller
             'description' => $request['description'],
             'status' => $request['status'],
         ]);
+
+
+        if (request()->hasFile('image')) {
+            $data_temoignage->clearMediaCollection('temoignageImage');
+            $data_temoignage->addMediaFromRequest('image')->toMediaCollection('temoignageImage');
+        }
 
 
 

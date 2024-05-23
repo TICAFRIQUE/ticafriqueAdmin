@@ -4,7 +4,7 @@
             <!-- Default Modals -->
             <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
                 style="display: none;">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel">Créer un nouveau slide </h5>
@@ -25,7 +25,51 @@
                                     </div>
                                 </div>
 
+
                                 <div class="col-md-12">
+                                    <label for="validationCustom01" class="form-label">Sous titre du slide</label>
+                                    <input type="text" name="subtitle" class="form-control" id="validationCustom01"
+                                        required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <!-- ========== Start button  ========== -->
+                                <div class="col-md-5">
+                                    <label for="validationCustom01" class="form-label">Nom du button</label>
+                                    <input type="text" name="btn_name" class="form-control" id="validationCustom01"
+                                        >
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label for="validationCustom01" class="form-label">URl du bouton</label>
+                                    <input type="text" name="btn_url" class="form-control" id="validationCustom01"
+                                        >
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="validationCustom01" class="form-label">Statut du bouton</label>
+                                    <select name="btn_status" class="form-control">
+                                        <option value="active">Activé</option>
+                                        <option value="desactive">Desactivé</option>
+
+                                    </select>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+
+                                <!-- ========== End button  ========== -->
+
+
+                                <div class="col-md-8">
                                     <label for="validationCustom01" class="form-label">Image du slide</label>
                                     <input type="file" name="image" class="form-control" id="validationCustom01">
                                     <div class="valid-feedback">
@@ -33,8 +77,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <label for="validationCustom01" class="form-label">Statut</label>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Statut du slide</label>
                                     <select name="status" class="form-control">
                                         <option value="active">Activé</option>
                                         <option value="desactive">Desactivé</option>

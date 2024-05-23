@@ -18,6 +18,10 @@ class Slide extends Model implements HasMedia
 
     protected $fillable = [
         'title',
+        'subtitle',
+        'btn_name',
+        'btn_url',
+        'btn_status',
         'status',
     ];
 

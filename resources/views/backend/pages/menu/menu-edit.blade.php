@@ -20,15 +20,27 @@
             <div class="card">
 
                 <div class="card-body">
-                    <form class="row g-3 needs-validation" method="post" action="{{ route('menu.update' , $data_menu_edit['id']) }}" novalidate>
+                    <form class="row g-3 needs-validation" method="post"
+                        action="{{ route('menu.update', $data_menu_edit['id']) }}" novalidate>
                         @csrf
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <label for="validationCustom01" class="form-label">Menu principal </label>
-                            <input type="text" name="name" value="{{ $data_menu_edit['name'] }}"
-                                class="form-control" id="validationCustom01" placeholder="Menu1" required>
+                            <input type="text" name="name" value="{{ $data_menu_edit['name'] }}" class="form-control"
+                                id="validationCustom01" placeholder="Menu1" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Position </label>
+                            <select name="position" class="form-control">
+                                @for ($i = 1; $i <= $data_count; $i++)
+                                    <option value="{{ $i }}" {{ $data_menu_edit['position'] == $i ? 'selected' : '' }}>
+                                        {{ $i }}
+                                    </option>
+                                @endfor
+                            </select>
                         </div>
 
 
@@ -56,7 +68,8 @@
                                 <option value="active" {{ $data_menu_edit['status'] == 'active' ? 'selected' : '' }}>
                                     Activé
                                 </option>
-                                <option value="desactive" {{ $data_menu_edit['status'] == 'desactive' ? 'selected' : '' }}>Desactivé
+                                <option value="desactive" {{ $data_menu_edit['status'] == 'desactive' ? 'selected' : '' }}>
+                                    Desactivé
                                 </option>
                             </select>
                             <div class="valid-feedback">

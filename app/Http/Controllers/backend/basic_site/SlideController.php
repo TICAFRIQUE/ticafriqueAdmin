@@ -26,7 +26,11 @@ class SlideController extends Controller
         //request validation .......
 
         $data_Slide = Slide::firstOrCreate([
-            'title' => $request['tile'],
+            'title' => $request['title'],
+            'subtitle' => $request['subtitle'],
+            'btn_name' => $request['btn_name'],
+            'btn_url' => $request['btn_url'],
+            'btn_status' => $request['btn_status'],
             'status' => $request['status'],
         ]);
 
@@ -47,8 +51,11 @@ class SlideController extends Controller
         //request validation ......
 
         $data_Slide = tap(Slide::find($id))->update([
-           
             'title' => $request['title'],
+            'subtitle' => $request['subtitle'],
+            'btn_name' => $request['btn_name'],
+            'btn_url' => $request['btn_url'],
+            'btn_status' => $request['btn_status'],
             'status' => $request['status'],
         ]);
 
