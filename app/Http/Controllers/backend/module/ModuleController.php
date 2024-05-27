@@ -24,7 +24,7 @@ class ModuleController extends Controller
         // $text = "Are you sure you want to delete?";
         // confirmDelete($title, $text);
 
-        return view('backend.pages.Module.index', compact('data_module'));
+        return view('backend.pages.module.index', compact('data_module'));
     }
 
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\backend\permission;
 
+use App\Models\User;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 
@@ -24,8 +26,14 @@ class PermissionController extends Controller
         $role_with_permission = Role::withWhereHas('permissions')->get();
         // $role_with_permission = DB::table('role_has_permissions')->get();
 
-    
+        // $user = User::find(Auth::user()->id);
+        // $roles = $user->getRoleNames();
+        // $permissions = $roles->getPermissionsViaRoles();
+
+    // dd($permissions);
         // dd($role_with_permission->toArray());
+
+
 
         return view('backend.pages.permission.index', compact('role', 'module', 'permission' , 'role_with_permission'));
     }
