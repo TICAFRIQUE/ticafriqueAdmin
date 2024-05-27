@@ -31,8 +31,10 @@
                     {{-- <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
                         un role</button> --}}
 
-                    <a href="{{ route('page.create') }}" type="button" class="btn btn-primary ">Créer
-                        une page</a>
+                    @can('ajouter-page')
+                        <a href="{{ route('page.create') }}" type="button" class="btn btn-primary ">Créer
+                            une page</a>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -60,21 +62,31 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="#!" class="dropdown-item"><i
-                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                            View</a>
-                                                    </li>
-                                                    <li><a href="{{ route('page.edit', $item['id']) }}" type="button"
-                                                            class="dropdown-item edit-item-btn"><i
-                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                            Edit</a></li>
-                                                    <li>
-                                                        <a href="#" class="dropdown-item remove-item-btn delete"
-                                                            data-id={{ $item['id'] }}>
-                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                            Delete
-                                                        </a>
-                                                    </li>
+                                                    @can('voir-page')
+                                                        <li><a href="#!" class="dropdown-item"><i
+                                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                                View</a>
+                                                        </li>
+                                                    @endcan
+
+                                                    @can('modifier-page')
+                                                        <li><a href="{{ route('page.edit', $item['id']) }}" type="button"
+                                                                class="dropdown-item edit-item-btn"><i
+                                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                                Edit</a>
+                                                        </li>
+                                                    @endcan
+
+                                                    @can('supprimer-page')
+                                                        <li>
+                                                            <a href="#" class="dropdown-item remove-item-btn delete"
+                                                                data-id={{ $item['id'] }}>
+                                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                                Delete
+                                                            </a>
+                                                        </li>
+                                                    @endcan
+
                                                 </ul>
                                             </div>
                                         </td>

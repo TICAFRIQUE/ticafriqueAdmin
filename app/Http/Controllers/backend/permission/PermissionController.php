@@ -20,22 +20,23 @@ class PermissionController extends Controller
     {
 
         $role = Role::get();
-        $module = Module::get();
+        $module = Module::OrderBy('name' , 'ASC')->get();
         $permission = Permission::get();
 
         $role_with_permission = Role::withWhereHas('permissions')->get();
         // $role_with_permission = DB::table('role_has_permissions')->get();
 
-        // $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         // $roles = $user->getRoleNames();
-        // $permissions = $roles->getPermissionsViaRoles();
+        $permissions = $user->getPermissionsViaRoles();
 
-    // dd($permissions);
+ 
+        // dd($permissions->toArray());
         // dd($role_with_permission->toArray());
 
 
 
-        return view('backend.pages.permission.index', compact('role', 'module', 'permission' , 'role_with_permission'));
+        return view('backend.pages.permission.index', compact('role', 'module', 'permission', 'role_with_permission'));
     }
 
 
@@ -60,6 +61,4 @@ class PermissionController extends Controller
         Alert::success('Operation réussi', 'Success Message');
         return back();
     }
-
-
 }

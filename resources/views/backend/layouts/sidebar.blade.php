@@ -83,7 +83,7 @@
 
             <div id="two-column-menu">
             </div>
-            
+
             <ul class="navbar-nav" id="navbar-nav">
                 {{-- <li class="menu-title"><span>@lang('translation.menu')</span></li> --}}
 
@@ -98,30 +98,34 @@
                 {{-- <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.settings')</span></li> --}}
 
 
+                @can('voir-page')
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('page.index') }}">
+                            <i class=" ri-file-4-line"></i> <span>PAGES</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('page.index') }}">
-                        <i class=" ri-file-4-line"></i> <span>PAGES</span>
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarBlog" data-bs-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="sidebarAuth">
-                        <i class=" ri-global-fill"></i> <span>BLOG</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarBlog">
-                        <ul class="nav nav-sm flex-column">
+                @can('voir-blog')
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarBlog" data-bs-toggle="collapse" role="button"
+                            aria-expanded="true" aria-controls="sidebarAuth">
+                            <i class=" ri-global-fill"></i> <span>BLOG</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarBlog">
+                            <ul class="nav nav-sm flex-column">
 
-                            <li class="nav-item active">
-                                <a href="{{ route('blog-category.index') }}" class="nav-link active">Categorie</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('blog-content.index') }}" class="nav-link">Contenu</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                <li class="nav-item active">
+                                    <a href="{{ route('blog-category.index') }}" class="nav-link active">Categorie</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('blog-content.index') }}" class="nav-link">Contenu</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarBasicSite" data-bs-toggle="collapse" role="button"
