@@ -136,7 +136,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/media-category/delete/" + Id,
+                            url: "/media-content/delete/" + Id,
                             dataType: "json",
                             // data: {
                             //     _token: '{{ csrf_token() }}',

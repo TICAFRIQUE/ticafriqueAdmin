@@ -52,7 +52,7 @@ class BlogContent extends Model implements HasMedia
      */
     public function blog_category(): BelongsTo
     {
-        return $this->belongsTo(BlogCategory::class , 'blog_categories_id' , 'id' );
+        return $this->belongsTo(BlogCategory::class , 'blog_categories_id' , 'id' )->where('status' , 'active');
     }
 
    

@@ -131,7 +131,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/media-content/delete/" + Id,
+                            url: "/blog-content/delete/" + Id,
                             dataType: "json",
                            
                             success: function(response) {
