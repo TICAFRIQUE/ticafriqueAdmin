@@ -83,6 +83,7 @@
 
             <div id="two-column-menu">
             </div>
+            
             <ul class="navbar-nav" id="navbar-nav">
                 {{-- <li class="menu-title"><span>@lang('translation.menu')</span></li> --}}
 
@@ -188,7 +189,13 @@
                                 <a href="{{ route('setting.index') }}" class="nav-link active">Informations</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('module.index') }}" class="nav-link">Modules</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('role.index') }}" class="nav-link">Roles</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('permission.index') }}" class="nav-link">Permissions</a>
                             </li>
                         </ul>
                     </div>

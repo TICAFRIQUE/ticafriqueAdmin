@@ -14,6 +14,7 @@ use App\Http\Controllers\backend\AuthAdminController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\menu\MenuController;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Http\Controllers\backend\module\ModuleController;
 use App\Http\Controllers\backend\basic_site\SlideController;
 use App\Http\Controllers\backend\blog\BlogContentController;
 use App\Http\Controllers\backend\basic_site\EquipeController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\backend\media\MediaContentController;
 use App\Http\Controllers\backend\media\MediaCategoryController;
 use App\Http\Controllers\backend\basic_site\ReferenceController;
 use App\Http\Controllers\backend\basic_site\TemoignageController;
+use App\Http\Controllers\backend\permission\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +87,24 @@ Route::middleware(['admin'])->group(function () {
         route::post('update/{id}', 'update')->name('role.update');
         route::post('delete/{id}', 'delete')->name('role.delete');
     });
+
+    //role
+    Route::prefix('permission')->controller(PermissionController::class)->group(function () {
+        route::get('', 'index')->name('permission.index');
+        route::post('store', 'store')->name('permission.store');
+        route::get('load-permission/{id}', 'getPermissionOfModule')->name('loadpermission'); // get permission of module with ajax
+        route::post('update/{id}', 'update')->name('permission.update');
+        route::post('delete/{id}', 'delete')->name('permission.delete');
+    });
+
+    //module
+    Route::prefix('module')->controller(ModuleController::class)->group(function () {
+        route::get('', 'index')->name('module.index');
+        route::post('store', 'store')->name('module.store');
+        route::post('update/{id}', 'update')->name('module.update');
+        route::post('delete/{id}', 'delete')->name('module.delete');
+    });
+
 
     //page
     Route::prefix('page')->controller(PageController::class)->group(function () {
