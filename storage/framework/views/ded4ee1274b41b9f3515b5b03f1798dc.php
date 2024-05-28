@@ -53,11 +53,20 @@
                                         <td> <?php echo e(++$key); ?> </td>
                                         <td><?php echo e($item['name']); ?></td>
                                         <td>
-                                            <?php $__currentLoopData = $item['permissions']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data_of_role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                               
-                                                   <br> <?php echo e($data_of_role['name']); ?>
+                                            <?php $__currentLoopData = $item->permissions->groupBy('module_name'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $module_name => $permission_of_role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <div>
+                                                    <span class="fw-bold text-uppercase">
+                                                        <?php echo e($module_name); ?>
 
-                                                
+                                                    </span>
+
+                                                    <?php $__currentLoopData = $permission_of_role; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <br> <?php echo e($data['name']); ?>
+
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <hr>
+                                                    
+                                                </div>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </td>
                                         <td> <?php echo e($item['created_at']); ?> </td>

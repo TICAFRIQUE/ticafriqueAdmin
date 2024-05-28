@@ -53,10 +53,18 @@
                                         <td> {{ ++$key }} </td>
                                         <td>{{ $item['name'] }}</td>
                                         <td>
-                                            @foreach ($item['permissions'] as $data_of_role)
-                                               
-                                                   <br> {{$data_of_role['name']}}
-                                                
+                                            @foreach ($item->permissions->groupBy('module_name') as $module_name => $permission_of_role)
+                                                <div>
+                                                    <span class="fw-bold text-uppercase">
+                                                        {{ $module_name }}
+                                                    </span>
+
+                                                    @foreach ($permission_of_role as $data)
+                                                        <br> {{ $data['name'] }}
+                                                    @endforeach
+                                                    <hr>
+                                                    
+                                                </div>
                                             @endforeach
                                         </td>
                                         <td> {{ $item['created_at'] }} </td>

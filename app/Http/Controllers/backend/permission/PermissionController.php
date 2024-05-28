@@ -24,11 +24,10 @@ class PermissionController extends Controller
         $permission = Permission::get();
 
         $role_with_permission = Role::withWhereHas('permissions')->get();
-        // $role_with_permission = DB::table('role_has_permissions')->get();
 
-        $user = User::find(Auth::user()->id);
+        // $user = User::find(Auth::user()->id);
         // $roles = $user->getRoleNames();
-        $permissions = $user->getPermissionsViaRoles();
+        // $permissions = $user->getPermissionsViaRoles();
 
  
         // dd($permissions->toArray());
