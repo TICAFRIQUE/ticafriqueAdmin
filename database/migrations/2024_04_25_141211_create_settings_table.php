@@ -21,8 +21,11 @@ return new class extends Migration
             $table->longText('tiktok_link')->nullable();
 
             //infos application
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('phone1')->nullable();
+            $table->string('phone2')->nullable();
+            $table->string('phone3')->nullable();
+            $table->string('email1')->nullable();
+            $table->string('email2')->nullable();
             $table->string('localisation')->nullable();
             $table->longText('google_maps')->nullable();
             $table->string('siege_social')->nullable();

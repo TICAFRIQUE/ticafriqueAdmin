@@ -30,7 +30,7 @@
                     <h5 class="card-title mb-0">Liste des pages</h5>
                     
 
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('creer-page')): ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('ajouter-page')): ?>
                         <a href="<?php echo e(route('page.create')); ?>" type="button" class="btn btn-primary ">Créer
                             une page</a>
                     <?php endif; ?>
@@ -91,7 +91,7 @@
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+                            </tbody>
                         </table>
                     </div>
                 </div>

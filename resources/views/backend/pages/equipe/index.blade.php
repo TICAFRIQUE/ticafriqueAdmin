@@ -85,8 +85,7 @@
                                     </tr>
                                     @include('backend.pages.equipe.edit')
                                 @endforeach
-
-
+                            </tbody>
                         </table>
                     </div>
                 </div>

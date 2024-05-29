@@ -51,8 +51,13 @@ class SettingController extends Controller
                 'tiktok_link' => $request['tiktok_link'],
 
                 //infos application
-                'phone' => $request['phone'],
-                'email' => $request['email'],
+                'phone1' => $request['phone1'],
+                'phone2' => $request['phone2'],
+                'phone3' => $request['phone3'],
+
+                'email1' => $request['email1'],
+                'email2' => $request['email2'],
+
                 'localisation' => $request['localisation'],
                 'google_maps' => $request['google_maps'],
                 'siege_social' => $request['siege_social'],
@@ -85,8 +90,13 @@ class SettingController extends Controller
                 'tiktok_link' => $request['tiktok_link'],
 
                 //infos application
-                'phone' => $request['phone'],
-                'email' => $request['email'],
+                'phone1' => $request['phone1'],
+                'phone2' => $request['phone2'],
+                'phone3' => $request['phone3'],
+
+                'email1' => $request['email1'],
+                'email2' => $request['email2'],
+                
                 'localisation' => $request['localisation'],
                 'google_maps' => $request['google_maps'],
                 'siege_social' => $request['siege_social'],

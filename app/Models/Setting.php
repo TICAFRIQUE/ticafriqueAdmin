@@ -26,8 +26,11 @@ class Setting extends Model implements HasMedia
         'tiktok_link',
 
         //infos application
-        'phone',
-        'email',
+        'phone1',
+        'phone2',
+        'phone3',
+        'email1',
+        'email2',
         'localisation',
         'google_maps',
         'siege_social',

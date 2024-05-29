@@ -21,7 +21,6 @@
     <?php echo $__env->renderComponent(); ?>
 
 
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -64,7 +63,8 @@
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
-                                                        <a href="#" class="dropdown-item remove-item-btn delete" data-id=<?php echo e($item['id']); ?>>
+                                                        <a href="#" class="dropdown-item remove-item-btn delete"
+                                                            data-id=<?php echo e($item['id']); ?>>
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
@@ -74,9 +74,8 @@
                                         </td>
                                     </tr>
                                     <?php echo $__env->make('backend.pages.module.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -132,8 +131,7 @@
                             data: {
                                 _token: '<?php echo e(csrf_token()); ?>',
 
-                            }
-                            ,
+                            },
                             success: function(response) {
                                 if (response.status == 200) {
                                     Swal.fire({

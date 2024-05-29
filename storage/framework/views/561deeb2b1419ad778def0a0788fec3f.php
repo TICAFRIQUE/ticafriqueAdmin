@@ -92,21 +92,47 @@
                                     </div>
                                     <!-- ========== End logo footer ========== -->
                                 </div>
-
+                                <hr>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="phonenumberInput" class="form-label">Telephone</label>
-                                            <input type="text" name="phone" class="form-control" id="phonenumberInput"
-                                                placeholder="Enter your phone number" value="<?php echo e($data_setting['phone'] ?? ''); ?>">
+                                            <label for="phonenumberInput" class="form-label">Telephone1</label>
+                                            <input type="text" name="phone1" class="form-control" id="phonenumberInput"
+                                               
+                                                value="<?php echo e($data_setting['phone1'] ?? ''); ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="phonenumberInput" class="form-label">Telephone2</label>
+                                            <input type="text" name="phone2" class="form-control" id="phonenumberInput"
+                                               
+                                                value="<?php echo e($data_setting['phone2'] ?? ''); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="phonenumberInput" class="form-label">Telephone3</label>
+                                            <input type="text" name="phone3" class="form-control" id="phonenumberInput"
+                                               
+                                                value="<?php echo e($data_setting['phone3'] ?? ''); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="emailInput" class="form-label">Email</label>
-                                            <input type="email" name="email" class="form-control" id="emailInput"
-                                                value="<?php echo e($data_setting['email'] ?? ''); ?>">
+                                            <label for="emailInput" class="form-label">Email 1</label>
+                                            <input type="email" name="email1" class="form-control" id="emailInput"
+                                                value="<?php echo e($data_setting['email1'] ?? ''); ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="emailInput" class="form-label">Email 2</label>
+                                            <input type="email" name="email2" class="form-control" id="emailInput"
+                                                value="<?php echo e($data_setting['email2'] ?? ''); ?>">
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -115,8 +141,8 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="countryInput" class="form-label">Siège social</label>
-                                            <input type="text" name="siege_social" class="form-control" id="countryInput"
-                                                value="<?php echo e($data_setting['siege_social'] ?? ''); ?>" />
+                                            <input type="text" name="siege_social" class="form-control"
+                                                id="countryInput" value="<?php echo e($data_setting['siege_social'] ?? ''); ?>" />
                                         </div>
                                     </div>
                                     <!--end col-->

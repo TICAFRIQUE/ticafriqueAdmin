@@ -21,7 +21,6 @@
     @endcomponent
 
 
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -43,7 +42,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($data_module as $key => $item)
-                                    <tr id="row_{{$item['id']}}">
+                                    <tr id="row_{{ $item['id'] }}">
                                         <td> {{ ++$key }} </td>
                                         <td>{{ $item['name'] }}</td>
                                         <td> {{ $item['created_at'] }} </td>
@@ -64,7 +63,8 @@
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
-                                                        <a href="#" class="dropdown-item remove-item-btn delete" data-id={{$item['id']}}>
+                                                        <a href="#" class="dropdown-item remove-item-btn delete"
+                                                            data-id={{ $item['id'] }}>
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
@@ -74,9 +74,8 @@
                                         </td>
                                     </tr>
                                     @include('backend.pages.module.edit')
-                                @endforeach
-
-
+                                    @endforeach
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -132,8 +131,7 @@
                             data: {
                                 _token: '{{ csrf_token() }}',
 
-                            }
-                            ,
+                            },
                             success: function(response) {
                                 if (response.status == 200) {
                                     Swal.fire({

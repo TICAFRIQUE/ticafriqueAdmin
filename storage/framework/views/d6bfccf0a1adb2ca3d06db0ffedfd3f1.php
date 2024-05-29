@@ -88,7 +88,7 @@
                 
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('dashboard.index')); ?>">
+                    <a class="nav-link menu-link <?php echo e(Route::is('dashboard.*')  ? 'active' : ''); ?> " href="<?php echo e(route('dashboard.index')); ?>">
                         <i class="ri-dashboard-2-line"></i> <span>DASHBOARD</span>
                     </a>
                 </li>
@@ -113,14 +113,14 @@
                             aria-expanded="true" aria-controls="sidebarAuth">
                             <i class=" ri-global-fill"></i> <span>BLOG</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarBlog">
+                        <div class="collapse menu-dropdown <?php echo e(Route::is('blog-content.*') || Route::is('blog-category.*')  ? 'show' : ''); ?> " id="sidebarBlog">
                             <ul class="nav nav-sm flex-column">
 
-                                <li class="nav-item active">
-                                    <a href="<?php echo e(route('blog-category.index')); ?>" class="nav-link active">Categorie</a>
+                                <li class="nav-item ">
+                                    <a href="<?php echo e(route('blog-category.index')); ?>" class="nav-link <?php echo e(Route::is('blog-category.*')  ? 'active' : ''); ?>">Categorie</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo e(route('blog-content.index')); ?>" class="nav-link">Contenu</a>
+                                    <a href="<?php echo e(route('blog-content.index')); ?>" class="nav-link <?php echo e(Route::is('blog-content.*')  ? 'active' : ''); ?> ">Contenu</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,40 +132,40 @@
                         aria-expanded="true" aria-controls="sidebarAuth">
                         <i class=" ri-globe-fill"></i> <span>SITE BASIQUE</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarBasicSite">
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('menu.*') || Route::is('service.*')  || Route::is('reference.*')  || Route::is('equipe.*')  || Route::is('slide.*') || Route::is('media-category.*') || Route::is('media-content.*') ? 'show' : ''); ?> " id="sidebarBasicSite">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('menu.create')); ?>" class="nav-link active">Menus</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('menu.create')); ?>" class="nav-link <?php echo e(Route::is('menu.*')  ? 'active' : ''); ?>">Menus</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('service.index')); ?>" class="nav-link active">Services</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('service.index')); ?>" class="nav-link <?php echo e(Route::is('service.*')  ? 'active' : ''); ?>">Services</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('reference.index')); ?>" class="nav-link active">Réferences</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('reference.index')); ?>" class="nav-link <?php echo e(Route::is('reference.*')  ? 'active' : ''); ?>">Réferences</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('equipe.index')); ?>" class="nav-link active">Equipes</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('equipe.index')); ?>" class="nav-link <?php echo e(Route::is('equipe.*')  ? 'active' : ''); ?>">Equipes</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('slide.index')); ?>" class="nav-link active">Slide</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('slide.index')); ?>" class="nav-link <?php echo e(Route::is('slide.*')  ? 'active' : ''); ?>">Slide</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="<?php echo e(route('temoignage.index')); ?>" class="nav-link active">Témoignages</a>
+                            <li class="nav-item ">
+                                <a href="<?php echo e(route('temoignage.index')); ?>" class="nav-link <?php echo e(Route::is('temoignage.*')  ? 'active' : ''); ?>">Témoignages</a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="#sidebarMedia" class="nav-link" data-bs-toggle="collapse" role="button"
+                                <a href="#sidebarMedia" class="nav-link <?php echo e(Route::is('media-category.*') || Route::is('media-content.*') ? 'active' : ''); ?>" data-bs-toggle="collapse" role="button"
                                     aria-expanded="false" aria-controls="sidebarMedia">
                                     Mediathèque
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarMedia">
+                                <div class="collapse menu-dropdown <?php echo e(Route::is('media-category.*') || Route::is('media-content.*') ? 'show' : ''); ?>" id="sidebarMedia">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item ">
-                                            <a href="<?php echo e(route('media-category.index')); ?>" class="nav-link active">
+                                            <a href="<?php echo e(route('media-category.index')); ?>" class="nav-link <?php echo e(Route::is('media-category.*') ? 'active' : ''); ?>">
                                                 Categories </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a href="<?php echo e(route('media-content.index')); ?>" class="nav-link active">
+                                            <a href="<?php echo e(route('media-content.index')); ?>" class="nav-link <?php echo e(Route::is('media-content.*') ? 'active' : ''); ?>">
                                                 Medias </a>
                                         </li>
                                     </ul>
@@ -176,7 +176,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('admin-register.index')); ?>">
+                    <a class="nav-link menu-link <?php echo e(Route::is('admin-register.*')  ? 'active' : ''); ?>" href="<?php echo e(route('admin-register.index')); ?>">
                         <i class="ri ri-lock-2-line"></i> <span>ADMINISTRATEURS</span>
                     </a>
                 </li>
@@ -186,20 +186,20 @@
                         aria-expanded="true" aria-controls="sidebarAuth">
                         <i class=" ri-settings-2-fill"></i> <span>CONFIGURATIONS</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarAuth">
+                    <div class="collapse menu-dropdown <?php echo e(Route::is('setting.*') || Route::is('module.*')|| Route::is('role.*') || Route::is('permission.*') ? 'show' : ''); ?>"" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
 
                             <li class="nav-item active">
-                                <a href="<?php echo e(route('setting.index')); ?>" class="nav-link active">Informations</a>
+                                <a href="<?php echo e(route('setting.index')); ?>" class="nav-link <?php echo e(Route::is('setting.*') ? 'active' : ''); ?>">Informations</a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo e(route('module.index')); ?>" class="nav-link">Modules</a>
+                                <a href="<?php echo e(route('module.index')); ?>" class="nav-link <?php echo e(Route::is('module.*') ? 'active' : ''); ?>">Modules</a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo e(route('role.index')); ?>" class="nav-link">Roles</a>
+                                <a href="<?php echo e(route('role.index')); ?>" class="nav-link <?php echo e(Route::is('role.*') ? 'active' : ''); ?>">Roles</a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo e(route('permission.index')); ?>" class="nav-link">Permissions</a>
+                                <a href="<?php echo e(route('permission.index')); ?>" class="nav-link <?php echo e(Route::is('permission.*') ? 'active' : ''); ?>">Permissions</a>
                             </li>
                         </ul>
                     </div>

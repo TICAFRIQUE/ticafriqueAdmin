@@ -1,25 +1,25 @@
-@extends('backend.layouts.master')
 
-@section('content')
-    @component('backend.components.breadcrumb')
-        @slot('li_1')
+
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('backend.components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             BLOG
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             Modifier un contenu
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    {{-- action="{{ route('blog-content.update', $data_blog_content['id']) }}" --}}
+                    
                     <form id="formSend" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                         <div class="col-md-8">
                             <label for="validationCustom01" class="form-label">Titre du blog</label>
-                            <input type="text" value="{{ $data_blog_content['title'] }}" name="title"
+                            <input type="text" value="<?php echo e($data_blog_content['title']); ?>" name="title"
                                 class="form-control" id="validationCustom01" placeholder="" required>
                             <div class="valid-feedback">
                                 Looks good!
@@ -31,12 +31,13 @@
                             <label for="validationCustom01" class="form-label">Categories</label>
                             <select name="category" class="form-control" required>
                                 <option disabled selected value>Sélectionner...</option>
-                                @foreach ($data_blog_category as $item)
-                                    <option value="{{ $item['id'] }}"
-                                        {{ $data_blog_content['blog_categories_id'] == $item['id'] ? 'selected' : '' }}>
-                                        {{ $item['name'] }}
+                                <?php $__currentLoopData = $data_blog_category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item['id']); ?>"
+                                        <?php echo e($data_blog_content['blog_categories_id'] == $item['id'] ? 'selected' : ''); ?>>
+                                        <?php echo e($item['name']); ?>
+
                                     </option>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <div class="valid-feedback">
                                 Looks good!
@@ -46,11 +47,11 @@
                         <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">Statut (Mise en ligne)</label>
                             <select name="status" class="form-control">
-                                <option value="active" {{ $data_blog_content['status'] == 'active' ? 'selected' : '' }}>
+                                <option value="active" <?php echo e($data_blog_content['status'] == 'active' ? 'selected' : ''); ?>>
                                     Activé
                                 </option>
                                 <option value="desactive"
-                                    {{ $data_blog_content['status'] == 'desactive' ? 'selected' : '' }}>Desactivé
+                                    <?php echo e($data_blog_content['status'] == 'desactive' ? 'selected' : ''); ?>>Desactivé
                                 </option>
                             </select>
                             <div class="valid-feedback">
@@ -62,7 +63,8 @@
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Résumé du blog</label>
                             <textarea class="form-control" name="resume" rows="5" class=""> 
-                                {{ $data_blog_content['resume'] }}
+                                <?php echo e($data_blog_content['resume']); ?>
+
                             </textarea><!-- End TinyMCE Editor -->
                             <div class="valid-feedback">
                                 Looks good!
@@ -75,7 +77,8 @@
                         <div class="col-md-12">
                             <label for="validationCustom01" class="form-label">Contenu de la page</label>
                             <textarea name="description" class="tinymce-editor">
-                                {{ $data_blog_content['description'] }}
+                                <?php echo e($data_blog_content['description']); ?>
+
                             </textarea><!-- End TinyMCE Editor -->
                             <div class="valid-feedback">
                                 Looks good!
@@ -95,7 +98,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <img src="{{ asset($data_blog_content->getFirstMediaUrl('blogImage')) }}" alt=""
+                                <img src="<?php echo e(asset($data_blog_content->getFirstMediaUrl('blogImage'))); ?>" alt=""
                                     width="80">
                             </div>
                         </div>
@@ -113,16 +116,7 @@
 
                             </div>
 
-                            {{-- <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="imageTableBody">
-                                </tbody>
-                            </table> --}}
+                            
                         </div>
                 </div>
                 <div class="">
@@ -135,12 +129,12 @@
     </div>
     <!--end row-->
 
-@section('script')
-    <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('build/libs/prismjs/prism.js')); ?>"></script>
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-    <script src="{{ URL::asset('build/js/pages/modal.init.js') }}"></script>
-    {{-- <script src="{{ URL::asset('build/js/pages/form-editor.init.js') }}"></script> --}}
-    <script src="{{ URL::asset('build/tinymce/tinymce.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/js/pages/modal.init.js')); ?>"></script>
+    
+    <script src="<?php echo e(URL::asset('build/tinymce/tinymce.min.js')); ?>"></script>
 
     <script>
         /**
@@ -244,7 +238,8 @@
         });
 
         //get gallery Image from controller for edit
-        var getGalleryBlog = {{ Js::from($galleryBlog) }}
+        var getGalleryBlog = <?php echo e(Js::from($galleryBlog)); ?>
+
 
         for (let i = 0; i < getGalleryBlog.length; i++) {
             const element = getGalleryBlog[i];
@@ -252,7 +247,7 @@
                                     <br><button type="button" class="btn btn-danger my-2 remove-image">Delete</button>
                                     </div>`;
 
-            console.log('edit:', image);
+                                    console.log('edit:' , image);
             $('#imageTableBody').append(image);
         }
 
@@ -270,7 +265,7 @@
                                     <br><button type="button" class="btn btn-danger my-2 remove-image">Delete</button>
                                     </div>`;
 
-                    console.log(image);
+                                    console.log(image);
 
                     $('#imageTableBody').append(image);
                 }
@@ -294,7 +289,8 @@
             });
 
 
-            var getBlogId = {{ Js::from($id) }}
+            var getBlogId = <?php echo e(Js::from($id)); ?>
+
 
             $.ajax({
                 url: "/blog-content/update/" + getBlogId, // Adjust the route as needed
@@ -326,5 +322,7 @@
             });
         });
     </script>
-@endsection
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\admin\ticafriqueAdmin\resources\views/backend/pages/blog/content/edit.blade.php ENDPATH**/ ?>

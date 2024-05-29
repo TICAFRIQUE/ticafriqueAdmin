@@ -42,8 +42,8 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                            <?php $__currentLoopData = $data_reference; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tbody>
-                                <?php $__currentLoopData = $data_reference; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr id="row_<?php echo e($item['id']); ?>">
                                         <td> <?php echo e(++$key); ?> </td>
                                         <td><?php echo e($item['status']); ?></td>
@@ -76,10 +76,10 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php echo $__env->make('backend.pages.reference.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    
+                                </tbody>
+                                <?php echo $__env->make('backend.pages.reference.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
                         </table>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             type: "GET",
                             url: "/reference/delete/" + Id,
                             dataType: "json",
-                           
+
                             success: function(response) {
                                 if (response.status == 200) {
                                     Swal.fire({

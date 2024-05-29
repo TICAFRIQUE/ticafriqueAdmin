@@ -77,9 +77,9 @@
                                         </td>
                                     </tr>
                                     @include('backend.pages.reference.edit')
-                                @endforeach
-
-
+                                    
+                                    @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             type: "GET",
                             url: "/reference/delete/" + Id,
                             dataType: "json",
-                           
+
                             success: function(response) {
                                 if (response.status == 200) {
                                     Swal.fire({

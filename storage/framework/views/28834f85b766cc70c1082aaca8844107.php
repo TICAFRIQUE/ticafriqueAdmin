@@ -42,6 +42,7 @@
                                     <th>statut</th>
                                     <th>Titre</th>
                                     <th>Categorie</th>
+                                    <th>Media</th>
                                     <th>Date creation</th>
                                     <th>Actions</th>
                                 </tr>
@@ -53,6 +54,11 @@
                                         <td><?php echo e($item['status']); ?></td>
                                         <td><?php echo e($item['title']); ?></td>
                                         <td><?php echo e($item['blog_category']['name']); ?></td>
+                                        <td>
+                                            <?php $__currentLoopData = $item->getMedia('galleryBlog'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $media): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <img src="<?php echo e(asset($media->getUrl())); ?>" alt="<?php echo e(asset($media->getUrl())); ?>" width="50" height="50">
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </td>
                                         <td> <?php echo e($item['created_at']); ?> </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
@@ -130,7 +136,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/media-content/delete/" + Id,
+                            url: "/blog-content/delete/" + Id,
                             dataType: "json",
                            
                             success: function(response) {

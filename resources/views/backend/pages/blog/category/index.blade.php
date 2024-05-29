@@ -88,13 +88,14 @@
                                 @endforeach
 
 
-                                @include('backend.pages.blog.category.create')
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('backend.pages.blog.category.create')
+
     <!--end row-->
 @endsection
 @section('script')

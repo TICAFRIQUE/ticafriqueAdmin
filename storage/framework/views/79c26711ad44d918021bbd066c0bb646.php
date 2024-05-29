@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">Résumé du blog</label>
+                            <label for="validationCustom01" class="form-label">Résumé du service</label>
                             <textarea class="form-control" name="resume" rows="5" class=""> </textarea><!-- End TinyMCE Editor -->
                             <div class="valid-feedback">
                                 Looks good!

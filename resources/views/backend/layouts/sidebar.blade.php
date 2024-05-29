@@ -88,7 +88,7 @@
                 {{-- <li class="menu-title"><span>@lang('translation.menu')</span></li> --}}
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('dashboard.index') }}">
+                    <a class="nav-link menu-link {{ Route::is('dashboard.*')  ? 'active' : '' }} " href="{{ route('dashboard.index') }}">
                         <i class="ri-dashboard-2-line"></i> <span>DASHBOARD</span>
                     </a>
                 </li>
@@ -113,14 +113,14 @@
                             aria-expanded="true" aria-controls="sidebarAuth">
                             <i class=" ri-global-fill"></i> <span>BLOG</span>
                         </a>
-                        <div class="collapse menu-dropdown" id="sidebarBlog">
+                        <div class="collapse menu-dropdown {{ Route::is('blog-content.*') || Route::is('blog-category.*')  ? 'show' : '' }} " id="sidebarBlog">
                             <ul class="nav nav-sm flex-column">
 
-                                <li class="nav-item active">
-                                    <a href="{{ route('blog-category.index') }}" class="nav-link active">Categorie</a>
+                                <li class="nav-item ">
+                                    <a href="{{ route('blog-category.index') }}" class="nav-link {{ Route::is('blog-category.*')  ? 'active' : '' }}">Categorie</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('blog-content.index') }}" class="nav-link">Contenu</a>
+                                    <a href="{{ route('blog-content.index') }}" class="nav-link {{ Route::is('blog-content.*')  ? 'active' : '' }} ">Contenu</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,40 +132,40 @@
                         aria-expanded="true" aria-controls="sidebarAuth">
                         <i class=" ri-globe-fill"></i> <span>SITE BASIQUE</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarBasicSite">
+                    <div class="collapse menu-dropdown {{ Route::is('menu.*') || Route::is('service.*')  || Route::is('reference.*')  || Route::is('equipe.*')  || Route::is('slide.*') || Route::is('media-category.*') || Route::is('media-content.*') ? 'show' : '' }} " id="sidebarBasicSite">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item active">
-                                <a href="{{ route('menu.create') }}" class="nav-link active">Menus</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('menu.create') }}" class="nav-link {{ Route::is('menu.*')  ? 'active' : '' }}">Menus</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="{{ route('service.index') }}" class="nav-link active">Services</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('service.index') }}" class="nav-link {{ Route::is('service.*')  ? 'active' : '' }}">Services</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="{{ route('reference.index') }}" class="nav-link active">Réferences</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('reference.index') }}" class="nav-link {{ Route::is('reference.*')  ? 'active' : '' }}">Réferences</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="{{ route('equipe.index') }}" class="nav-link active">Equipes</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('equipe.index') }}" class="nav-link {{ Route::is('equipe.*')  ? 'active' : '' }}">Equipes</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="{{ route('slide.index') }}" class="nav-link active">Slide</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('slide.index') }}" class="nav-link {{ Route::is('slide.*')  ? 'active' : '' }}">Slide</a>
                             </li>
-                            <li class="nav-item active">
-                                <a href="{{ route('temoignage.index') }}" class="nav-link active">Témoignages</a>
+                            <li class="nav-item ">
+                                <a href="{{ route('temoignage.index') }}" class="nav-link {{ Route::is('temoignage.*')  ? 'active' : '' }}">Témoignages</a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="#sidebarMedia" class="nav-link" data-bs-toggle="collapse" role="button"
+                                <a href="#sidebarMedia" class="nav-link {{Route::is('media-category.*') || Route::is('media-content.*') ? 'active' : ''}}" data-bs-toggle="collapse" role="button"
                                     aria-expanded="false" aria-controls="sidebarMedia">
                                     Mediathèque
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarMedia">
+                                <div class="collapse menu-dropdown {{Route::is('media-category.*') || Route::is('media-content.*') ? 'show' : ''}}" id="sidebarMedia">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item ">
-                                            <a href="{{ route('media-category.index') }}" class="nav-link active">
+                                            <a href="{{ route('media-category.index') }}" class="nav-link {{Route::is('media-category.*') ? 'active' : ''}}">
                                                 Categories </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a href="{{ route('media-content.index') }}" class="nav-link active">
+                                            <a href="{{ route('media-content.index') }}" class="nav-link {{ Route::is('media-content.*') ? 'active' : ''}}">
                                                 Medias </a>
                                         </li>
                                     </ul>
@@ -176,7 +176,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin-register.index') }}">
+                    <a class="nav-link menu-link {{ Route::is('admin-register.*')  ? 'active' : '' }}" href="{{ route('admin-register.index') }}">
                         <i class="ri ri-lock-2-line"></i> <span>ADMINISTRATEURS</span>
                     </a>
                 </li>
@@ -186,20 +186,20 @@
                         aria-expanded="true" aria-controls="sidebarAuth">
                         <i class=" ri-settings-2-fill"></i> <span>CONFIGURATIONS</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarAuth">
+                    <div class="collapse menu-dropdown {{Route::is('setting.*') || Route::is('module.*')|| Route::is('role.*') || Route::is('permission.*') ? 'show' : ''}}"" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
 
                             <li class="nav-item active">
-                                <a href="{{ route('setting.index') }}" class="nav-link active">Informations</a>
+                                <a href="{{ route('setting.index') }}" class="nav-link {{Route::is('setting.*') ? 'active' : ''}}">Informations</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('module.index') }}" class="nav-link">Modules</a>
+                                <a href="{{ route('module.index') }}" class="nav-link {{Route::is('module.*') ? 'active' : ''}}">Modules</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('role.index') }}" class="nav-link">Roles</a>
+                                <a href="{{ route('role.index') }}" class="nav-link {{Route::is('role.*') ? 'active' : ''}}">Roles</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('permission.index') }}" class="nav-link">Permissions</a>
+                                <a href="{{ route('permission.index') }}" class="nav-link {{Route::is('permission.*') ? 'active' : ''}}">Permissions</a>
                             </li>
                         </ul>
                     </div>

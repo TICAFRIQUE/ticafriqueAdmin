@@ -28,8 +28,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title mb-0">Liste des medias</h5>
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
-                        un media</button>
+                    <a href="{{ route('media-content.create') }}" class="btn btn-primary">Créer
+                        un media</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -68,11 +68,11 @@
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             View</a>
                                                     </li>
-                                                    <li><a type="button" class="dropdown-item edit-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#myModalEdit{{ $item['id'] }}"><i
+                                                    <li><a href="{{ route('media-content.edit', $item['id']) }}"
+                                                            type="button" class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
+
                                                     <li>
                                                         <a href="#" class="dropdown-item remove-item-btn delete"
                                                             data-id={{ $item['id'] }}>
@@ -84,11 +84,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    @include('backend.pages.media.content.edit')
                                 @endforeach
-
-
-                                @include('backend.pages.media.content.create')
                         </table>
                     </div>
                 </div>

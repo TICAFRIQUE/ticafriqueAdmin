@@ -43,6 +43,7 @@
                                     <th>statut</th>
                                     <th>Titre</th>
                                     <th>Categorie</th>
+                                    <th>Media</th>
                                     <th>Date creation</th>
                                     <th>Actions</th>
                                 </tr>
@@ -54,6 +55,11 @@
                                         <td>{{ $item['status'] }}</td>
                                         <td>{{ $item['title'] }}</td>
                                         <td>{{ $item['blog_category']['name'] }}</td>
+                                        <td>
+                                            @foreach ($item->getMedia('galleryBlog') as $media)
+                                                <img src="{{asset($media->getUrl())}}" alt="{{asset($media->getUrl())}}" width="50" height="50">
+                                            @endforeach
+                                        </td>
                                         <td> {{ $item['created_at'] }} </td>
                                         <td>
                                             <div class="dropdown d-inline-block">

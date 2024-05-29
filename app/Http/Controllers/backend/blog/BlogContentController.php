@@ -15,7 +15,8 @@ class BlogContentController extends Controller
      */
     public function index()
     {
-        $data_blog_content = BlogContent::with('blog_category')->get();
+        $data_blog_content = BlogContent::with(['blog_category', 'media'])->get();
+        // dd( $data_blog_content->toArray());
 
         return view('backend.pages.blog.content.index', compact('data_blog_content'));
     }
@@ -26,7 +27,7 @@ class BlogContentController extends Controller
     public function create()
     {
         //
-        $data_blog_category = BlogCategory::get();
+        $data_blog_category = BlogCategory::whereStatus('active')->OrderBy('position', 'ASC')->get();
         return view('backend.pages.blog.content.create', compact('data_blog_category'));
     }
 
@@ -36,7 +37,17 @@ class BlogContentController extends Controller
     public function store(Request $request)
     {
         //request validation ........
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'resume' => 'required',
+            'category' => 'required',
+            'image' => 'required',
+        ]);
+
+
         // dd($request->all());
+
         $data_blog_content = BlogContent::create([
             'title' => $request['title'],
             'resume' => $request['resume'],
@@ -50,8 +61,32 @@ class BlogContentController extends Controller
             $data_blog_content->addMediaFromRequest('image')->toMediaCollection('blogImage');
         }
 
-        Alert::Success('Opération', 'SuccessMessage');
-        return back();
+
+        if ($request->images) {
+
+            foreach ($request->input('images') as $fileData) {
+                // Decode base64 file
+                $fileData = explode(',', $fileData);
+                $fileExtension = explode('/', explode(';', $fileData[0])[0])[1];
+                $decodedFile = base64_decode($fileData[1]);
+
+                // Create a temporary file
+                $tempFilePath = sys_get_temp_dir() . '/' . uniqid() . '.' . $fileExtension;
+                file_put_contents($tempFilePath, $decodedFile);
+
+                // Add file to media library
+                $data_blog_content->addMedia($tempFilePath)->toMediaCollection('galleryBlog');
+
+                // // Delete the temporary file
+                // unlink($tempFilePath);
+            }
+        }
+        // Alert::Success('Opération', 'SuccessMessage');
+        // return back();
+
+        return response([
+            'message' => 'operation reussi'
+        ]);
     }
 
 
@@ -62,10 +97,27 @@ class BlogContentController extends Controller
     public function edit(string $id)
     {
         //
-        $data_blog_category = BlogCategory::get();
+        $id = $id;
+        $data_blog_category = BlogCategory::whereStatus('active')->OrderBy('position', 'ASC')->get();
         $data_blog_content = BlogContent::with('media')->whereId($id)->first();
 
-        return view('backend.pages.blog.content.edit', compact('data_blog_content', 'data_blog_category'));
+        // dd( $data_blog_content->toArray());
+
+        //get Image from database
+        $galleryBlog = [];
+
+        foreach ($data_blog_content->getMedia('galleryBlog') as $value) {
+            // Read the file content
+            $fileContent = file_get_contents($value->getPath());
+
+            // Encode the file content to base64
+            $base64File = base64_encode($fileContent);
+            array_push($galleryBlog, $base64File);
+        }
+
+        // dd($galleryBlog);
+
+        return view('backend.pages.blog.content.edit', compact('data_blog_content', 'data_blog_category', 'galleryBlog', 'id'));
     }
 
     /**
@@ -73,8 +125,15 @@ class BlogContentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        //request validation ......
+        //request validation ........
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'resume' => 'required',
+            'category' => 'required',
+            'image' => '',
+        ]);
+
 
         $data_blog_content = tap(BlogContent::find($id))->update([
             'title' => $request['title'],
@@ -90,17 +149,34 @@ class BlogContentController extends Controller
             $data_blog_content->addMediaFromRequest('image')->toMediaCollection('blogImage');
         }
 
+        if ($request->images) {
+            $data_blog_content->clearMediaCollection('galleryBlog');
 
-        //other images
-        // if ($request->has('images')) {
-        //     foreach ($request->file('images') as $value) {
-        //         $data_blog_content->addMedia($value)
-        //             ->toMediaCollection('images');
-        //     }
-        // }
+            foreach ($request->input('images') as $fileData) {
+                // Decode base64 file
+                $fileData = explode(',', $fileData);
+                $fileExtension = explode('/', explode(';', $fileData[0])[0])[1];
+                $decodedFile = base64_decode($fileData[1]);
 
-        Alert::success('Opération réussi', 'Success Message');
-        return back();
+                // Create a temporary file
+                $tempFilePath = sys_get_temp_dir() . '/' . uniqid() . '.' . $fileExtension;
+                file_put_contents($tempFilePath, $decodedFile);
+
+                // Add file to media library
+                $data_blog_content->addMedia($tempFilePath)->toMediaCollection('galleryBlog');
+
+                // // Delete the temporary file
+                // unlink($tempFilePath);
+            }
+        }
+
+
+        return response([
+            'message' => 'operation reussi'
+        ]);
+
+        // Alert::success('Opération réussi', 'Success Message');
+        // return back();
     }
 
     /**

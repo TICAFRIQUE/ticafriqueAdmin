@@ -63,7 +63,7 @@
                                                         <br> {{ $data['name'] }}
                                                     @endforeach
                                                     <hr>
-                                                    
+
                                                 </div>
                                             @endforeach
                                         </td>

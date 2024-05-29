@@ -28,8 +28,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title mb-0">Liste des medias</h5>
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal">Créer
-                        un media</button>
+                    <a href="<?php echo e(route('media-content.create')); ?>" class="btn btn-primary">Créer
+                        un media</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -68,11 +68,11 @@
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             View</a>
                                                     </li>
-                                                    <li><a type="button" class="dropdown-item edit-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#myModalEdit<?php echo e($item['id']); ?>"><i
+                                                    <li><a href="<?php echo e(route('media-content.edit', $item['id'])); ?>"
+                                                            type="button" class="dropdown-item edit-item-btn"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
+
                                                     <li>
                                                         <a href="#" class="dropdown-item remove-item-btn delete"
                                                             data-id=<?php echo e($item['id']); ?>>
@@ -84,11 +84,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php echo $__env->make('backend.pages.media.content.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-                                <?php echo $__env->make('backend.pages.media.content.create', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         </table>
                     </div>
                 </div>
@@ -136,7 +132,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "GET",
-                            url: "/media-category/delete/" + Id,
+                            url: "/media-content/delete/" + Id,
                             dataType: "json",
                             // data: {
                             //     _token: '<?php echo e(csrf_token()); ?>',

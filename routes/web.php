@@ -232,7 +232,9 @@ Route::middleware(['admin'])->group(function () {
     //mediatheque---media
     Route::prefix('media-content')->controller(MediaContentController::class)->group(function () {
         route::get('', 'index')->name('media-content.index');
+        route::get('create', 'create')->name('media-content.create');
         route::post('store', 'store')->name('media-content.store');
+        route::get('edit/{id}', 'edit')->name('media-content.edit');
         route::post('update/{id}', 'update')->name('media-content.update');
         route::get('delete/{id}', 'delete')->name('media-content.delete');
     });
