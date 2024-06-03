@@ -26,6 +26,9 @@ class Setting extends Model implements HasMedia
         'tiktok_link',
 
         //infos application
+        'projet_title', //nom du projet
+        'projet_description', //description du projet
+        'phone1',
         'phone1',
         'phone2',
         'phone3',

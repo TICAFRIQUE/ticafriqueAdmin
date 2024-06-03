@@ -51,6 +51,8 @@ class SettingController extends Controller
                 'tiktok_link' => $request['tiktok_link'],
 
                 //infos application
+                'projet_title' => $request['projet_title'],
+                'projet_description' => $request['projet_description'],
                 'phone1' => $request['phone1'],
                 'phone2' => $request['phone2'],
                 'phone3' => $request['phone3'],
@@ -67,6 +69,14 @@ class SettingController extends Controller
             ]);
 
             //insert image logo
+
+            if ($request->has('cover') && count($media) > 0) {
+                $data_setting->clearMediaCollection('cover');
+                $data_setting->addMediaFromRequest('cover')->toMediaCollection('cover');
+            } elseif ($request->has('cover')) {
+                $data_setting->addMediaFromRequest('cover')->toMediaCollection('cover');
+            }
+
             if ($request->has('logo_header') && count($media) > 0) {
                 $data_setting->clearMediaCollection('logo_header');
                 $data_setting->addMediaFromRequest('logo_header')->toMediaCollection('logo_header');
@@ -90,6 +100,8 @@ class SettingController extends Controller
                 'tiktok_link' => $request['tiktok_link'],
 
                 //infos application
+                'projet_title' => $request['projet_title'],
+                'projet_description' => $request['projet_description'],
                 'phone1' => $request['phone1'],
                 'phone2' => $request['phone2'],
                 'phone3' => $request['phone3'],

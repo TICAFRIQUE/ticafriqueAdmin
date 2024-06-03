@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,8 @@ class AuthAdminController extends Controller
     {
 
         if (request()->method() == 'GET') {
-            return view('backend.pages.auth-admin.login');
+        $data_setting = Setting::with('media')->first();
+            return view('backend.pages.auth-admin.login' , compact('data_setting'));
         } elseif (request()->method() == 'POST') {
             $credentials = $request->validate([
                 'email' => ['required',],
